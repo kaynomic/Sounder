@@ -385,7 +385,7 @@ Creates and returns a new song.
       "description": "A song about the past.",
       "url": "audio url",
       "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-19 20:39:36", 
+      "updatedAt": "2021-11-19 20:39:36",
       "previewImage": "image url"
     }
     ```
@@ -457,7 +457,7 @@ Updates and returns an existing song.
       "description": "A song about the past.",
       "url": "audio url",
       "createdAt": "2021-11-19 20:39:36",
-      "updatedAt": "2021-11-20 20:00:00", 
+      "updatedAt": "2021-11-20 20:00:00",
       "previewImage": "image url"
     }
     ```
@@ -512,7 +512,7 @@ Deletes an existing song.
     ```json
     {
       "message": "Successfully deleted",
-      "statusCode": 200 
+      "statusCode": 200
     }
     ```
 
@@ -794,7 +794,7 @@ Deletes an existing album.
     ```json
     {
       "message": "Successfully deleted",
-      "statusCode": 200 
+      "statusCode": 200
     }
     ```
 
@@ -1008,7 +1008,7 @@ Delete an existing comment.
     ```json
     {
       "message": "Successfully deleted",
-      "statusCode": 200 
+      "statusCode": 200
     }
     ```
 
@@ -1450,7 +1450,7 @@ Deletes an existing playlist.
     ```json
     {
       "message": "Successfully deleted",
-      "statusCode": 200 
+      "statusCode": 200
     }
     ```
 
@@ -1556,4 +1556,3 @@ Return songs filtered by query parameters.
       }
     }
     ```
-    
