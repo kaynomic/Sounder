@@ -356,7 +356,7 @@ Creates and returns a new song.
 * Require proper authorization: Album must belong to the current user
 * Request
   * Method: POST
-  * URL: /albums/:albumId
+  * URL: /albums/:albumId/songs
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -568,7 +568,7 @@ Returns all the Albums created by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/albums
+  * URL: /users/:userId/albums
   * Body: none
 
 * Successful Response
@@ -1474,7 +1474,7 @@ Returns all the playlists created by the current user.
 * Require Authentication: true
 * Request
   * Method: GET
-  * URL: /users/playlists
+  * URL: /users/:userId/playlists
   * Body: none
 
 * Successful Response
@@ -1505,7 +1505,7 @@ Return songs filtered by query parameters.
 * Require Authentication: false
 * Request
   * Method: GET
-  * URL: /songs
+  * URL: /songs/
   * Query Parameters
     * page: integer, minimum: 0, maximum: 10, default: 0
     * size: integer, minimum: 0, maximum: 20, default: 20
