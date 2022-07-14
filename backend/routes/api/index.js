@@ -1,7 +1,10 @@
 const router = require('express').Router();
+const { restoreUser } = require('../../utils/auth.js');
 
-router.post('/test', function(req, res) {
-    res.json({requestBody: req.body})
-});
+// Connect restoreUser midware to the API router
+    // if curr user session is valid, req.user = curr user
+    // if curr user is invalid, req.user is null
+router.use(restoreUser);
+
 
 module.exports = router;
