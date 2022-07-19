@@ -6,27 +6,23 @@ module.exports = {
 
     // 1
     {
-
+      name: "Super chill vibes bruh",
+      previewImage: "image url",
+      userId: 5
     },
 
     // 2
     {
-
+      name: "Classics",
+      previewImage: "image url",
+      userId: 1
     },
 
     // 3
     {
-
-    },
-
-    // 4
-    {
-
-    },
-
-    // 5
-    {
-
+      name: "BANGERZ",
+      previewImage: "image url",
+      userId: 3
     }
   ]);
 },
