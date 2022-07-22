@@ -10,7 +10,8 @@ module.exports = {
         lastName: "Rogan",
         username: 'Demo-lition',
         email: 'demo@user.io',
-        hashedPassword: bcrypt.hashSync('password')
+        hashedPassword: bcrypt.hashSync('password'),
+        previewImage: "image url"
       },
 
       // 2
@@ -19,7 +20,8 @@ module.exports = {
         lastName: "Vogt",
         username: 'FakeUser1',
         email: 'user1@user.io',
-        hashedPassword: bcrypt.hashSync('password2')
+        hashedPassword: bcrypt.hashSync('password2'),
+        previewImage: "image url"
       },
 
       // 3
@@ -28,7 +30,8 @@ module.exports = {
         lastName: "Lopez",
         username: 'FakeUser2',
         email: 'user2@user.io',
-        hashedPassword: bcrypt.hashSync('password3')
+        hashedPassword: bcrypt.hashSync('password3'),
+        previewImage: "image url"
       },
 
       // 4
@@ -37,7 +40,8 @@ module.exports = {
         lastName: "Mendez",
         username: 'Kaynomic',
         email: 'kaynomic@user.com',
-        hashedPassword: bcrypt.hashSync('password4')
+        hashedPassword: bcrypt.hashSync('password4'),
+        previewImage: "image url"
       },
 
       // 5
@@ -46,7 +50,8 @@ module.exports = {
         lastName: "Santiago",
         username: 'JoshyWashy',
         email: 'joshy@user.com',
-        hashedPassword: bcrypt.hashSync('password5')
+        hashedPassword: bcrypt.hashSync('password5'),
+        previewImage: "image url"
       }
     ], {});
   },

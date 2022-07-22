@@ -9,7 +9,7 @@ const router = express.Router();
 
 // 'Checking' the login credentials
 const validateLogin = [
-    check('credential')
+    check('email')
     .exists({ checkFalsy: true })
     .notEmpty()
     .withMessage('Please provide a valid email or username.'),
@@ -33,24 +33,28 @@ router.get('/', restoreUser, (req, res) => {
 });
 
 // Log in
-router.post('/', validateLogin, async (req, res, next) => {
-    const { credential, password } = req.body;
+router.post('/login', validateLogin, async (req, res, next) => {
+    const { email, password } = req.body;
 
-    const user = await User.login({ credential, password });
+    const user = await User.login({ email, password });
 
     if (!user) {
         const err = new Error('Login failed');
         err.status = 401;
         err.title = 'Login failed';
-        err.errors = ['The provided credentials were invalid.'];
+        err.errors = ['The provided email or password is invalid.'];
         return next(err);
     }
 
-    await setTokenCookie(res, user);
+    const jToken = await setTokenCookie(res, user);
 
-    return res.json({
-        user
-    });
+    if (jToken) {
+        user.dataValues.token = jToken;
+      } else {
+        user.dataValues.token = "";
+      }
+
+    return res.json(user);
 });
 
 router.delete('/', (req, res) => {

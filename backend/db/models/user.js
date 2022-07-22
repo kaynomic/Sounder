@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 
     toSafeObject() {
       const { id, firstName, lastName, username, email } = this;
-      return { id, firstName, lastName, username, email };
+      return { id, firstName, lastName, email };
     }
 
     validatePassword(password) {
@@ -18,14 +18,11 @@ module.exports = (sequelize, DataTypes) => {
       return User.scope("currentUser").findByPk(id);
     }
 
-    static async login({ credential, password }) {
+    static async login({ email, password }) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
         where: {
-          [Op.or]: {
-            username: credential,
-            email: credential
-          }
+          email
         }
       });
 
@@ -34,14 +31,15 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
-    static async signUp({ firstName, lastName, username, email, password }) {
+    static async signUp({ firstName, lastName, username, email, password, previewImage }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
         firstName,
         lastName,
         username,
         email,
-        hashedPassword
+        hashedPassword,
+        previewImage
       });
         return await User.scope('currentUser').findByPk(user.id);
     }
@@ -111,10 +109,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     scopes: {
       currentUser: {
-        attributes: { exclude: ["hashedPassword", "createdAt", "updatedAt"] }
+        attributes: { exclude: ["hashedPassword", "previewImage", "createdAt", "updatedAt"] }
       },
       loginUser: {
-        attributes: { include: ["firstName", "lastName", "username", "email"] }
+        attributes: { include: ["firstName", "lastName", "email"] }
       }
     }
   }

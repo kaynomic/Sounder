@@ -39,19 +39,22 @@ const validateSignup = [
     handleValidationErrors
 ];
 
-router.post('/', validateSignup, async (req, res) => {
-    const { firstName, lastName, email, username, password } = req.body;
+router.post('/signup', validateSignup, async (req, res) => {
+    const { firstName, lastName, email, username, password, previewImage } = req.body;
+    const check = await User.findOne({ where: { email } });
 
-    const user = await User.signUp({ firstName, lastName, email, username, password });
+    if (check) {
+        let err = new Error("Email must be unique");
+        err.status = 403;
+        err.errors = ["Email must be unique"];
+        throw err;
+    }
 
-    await setTokenCookie(res, user);
+    const user = await User.signUp({ firstName, lastName, email, username, password, previewImage });
 
-    return res.json({
-        user
-    });
+    const token = await setTokenCookie(res, user);
+
+    return res.json({ ...user.toSafeObject(), token });
 })
-
-
-
 
 module.exports = router;
