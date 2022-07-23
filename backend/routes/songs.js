@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { requireAuth, restoreUser, setTokenCookie } = require("../utils/auth.js");
 
-const { User, Album, Song } = require('../db/models');
+const { User, Album, Song, Comment } = require('../db/models');
+
+/* ---------------------- GET ----------------------- */
 
 // Get All Songs
 router.get('/', async (req, res) => {
@@ -41,6 +43,67 @@ router.get('/:songId', async (req, res) => {
 })
 
 
+// Get all Comments by Song id
+router.get('/:songId/comments', async (req, res) => {
+    const { user } = req;
+    const { songId } = req.params;
+
+    const song = await Song.findByPk(songId, {
+        include: [
+            {
+                model: Comment,
+                include: [
+                    {
+                        model: User,
+                        attributes: [
+                            "id", "username"
+                        ]
+                    }
+                ]
+            }
+        ]
+    });
+
+    if (song) {
+
+        res.json({Comments: song.Comments});
+
+    } else {
+        const err = new Error("Song not found");
+        err.status = 404;
+        throw err;
+    }
+})
+
+
+/* ---------------------- POST ----------------------- */
+
+// Create a Comment for a Song based on the Song's id
+router.post('/:songId/comments', requireAuth, async (req, res) => {
+    const { user } = req;
+    const { songId } = req.params;
+    const { body } = req.body;
+
+    const song = await Song.findByPk(songId);
+
+    if (song) {
+        const comment = await Comment.create({
+            body,
+            songId,
+            userId: user.id
+        })
+
+        res.json(comment);
+
+    } else {
+        const err = new Error("Song not found");
+        err.status = 404;
+        throw err;
+    }
+})
+
+/* ---------------------- PUT ----------------------- */
+
 // Edit a Song
 router.put('/:songId', requireAuth, async (req, res) => {
     const { user } = req;
@@ -63,6 +126,15 @@ router.put('/:songId', requireAuth, async (req, res) => {
     }
     res.json(song);
 })
+
+/* ---------------------- DELETE ----------------------- */
+
+
+
+
+
+
+
 
 
 module.exports = router;

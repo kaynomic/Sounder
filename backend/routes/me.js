@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const { requireAuth, restoreUser, setTokenCookie } = require("../utils/auth.js");
-const { User, Song } = require('../db/models');
+const { User, Song, Album } = require('../db/models');
+
+/* ---------------------- GET ----------------------- */
 
 // Get Current User
 router.get('/', requireAuth, async (req, res, next) => {
@@ -34,6 +36,18 @@ router.get('/songs', requireAuth, async (req, res) => {
         }
     })
     res.json(songs);
+})
+
+// Get all Albums created by Current User
+router.get('/albums', requireAuth, async (req, res) => {
+    const { user } = req;
+
+    const albums = await Album.findAll({
+        where: {
+            userId: user.id
+        }
+    })
+    res.json(albums)
 })
 
 
