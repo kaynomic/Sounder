@@ -138,7 +138,6 @@ router.post('/:songId/comments', requireAuth, async (req, res) => {
 
 // Edit a Song
 router.put('/:songId', requireAuth, async (req, res) => {
-    const { user } = req;
     const { songId } = req.params;
     const { title, description, url, previewImage } = req.body;
 
