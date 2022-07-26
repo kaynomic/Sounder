@@ -6,6 +6,7 @@ const songsRouter = require('./songs.js');
 const albumsRouter = require('./albums.js');
 const artistsRouter = require('./artists.js');
 const commentsRouter = require('./comments.js');
+const playlistsRouter = require('./playlists.js');
 
 router.get("/api/csrf/restore", (req, res) => {
   const csrfToken = req.csrfToken();
@@ -21,5 +22,6 @@ router.use('/songs', songsRouter);
 router.use('/albums', albumsRouter);
 router.use('/artists', artistsRouter);
 router.use('/comments', commentsRouter);
+router.use('/playlists', playlistsRouter);
 
 module.exports = router;

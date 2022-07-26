@@ -8,10 +8,42 @@ const { User, Album, Song, Comment } = require('../db/models');
 
 // Get All Songs
 router.get('/', async (req, res) => {
-    const songs = await Song.findAll({
-        attributes: ["id", "userId", "albumId", "title", "description", "createdAt", "updatedAt", "previewImage"]
+
+    // use size instead of limit
+    let { page, size } = req.query;
+    if (page) page = parseInt(page);
+    if (size) size = parseInt(size);
+
+    let where = {};
+    let pagination = {};
+
+    if (!page) page = 0;
+    if (!size) size = 20;
+
+    if (page > 10) {
+        page = 0;
+    } else {
+        page = page;
+    }
+
+    if (size > 10) {
+        size = 0;
+    } else {
+        size = size;
+    }
+
+    if (page > 0) {
+        pagination.limit = size;
+        pagination.offset = size * (page - 1);
+    } else {
+        pagination.limit = size;
+    }
+
+    const Songs = await Song.findAll({
+        attributes: ["id", "userId", "albumId", "title", "description", "createdAt", "updatedAt", "previewImage"],
+        ...pagination
     })
-    res.json(songs);
+    res.json({ Songs, page, size });
 })
 
 
@@ -129,7 +161,22 @@ router.put('/:songId', requireAuth, async (req, res) => {
 
 /* ---------------------- DELETE ----------------------- */
 
+// Delete a Song
+router.delete('/:songId', requireAuth, async(req, res) => {
+    const { songId } = req.params;
 
+    const song = await Song.findByPk(songId);
+
+    if (song) {
+        song.destroy();
+
+        res.json({ msg: "Successfully deleted song", statusCode: 200 })
+    } else {
+        const err = new Error("Song not found");
+        err.status = 404;
+        throw err;
+    }
+})
 
 
 

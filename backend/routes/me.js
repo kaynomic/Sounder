@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { requireAuth, restoreUser, setTokenCookie } = require("../utils/auth.js");
-const { User, Song, Album } = require('../db/models');
+const { User, Song, Album, Playlist } = require('../db/models');
 
 /* ---------------------- GET ----------------------- */
 
@@ -50,5 +50,16 @@ router.get('/albums', requireAuth, async (req, res) => {
     res.json(albums)
 })
 
+// Get all Playlists created by Current User
+router.get('/playlists', requireAuth, async (req, res) => {
+    const { user } = req;
+
+    const playlists = await Playlist.findAll({
+        where: {
+            userId: user.id
+        }
+    })
+    res.json(playlists)
+})
 
 module.exports = router;
