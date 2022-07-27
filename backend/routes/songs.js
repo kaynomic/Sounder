@@ -40,8 +40,7 @@ router.get('/', async (req, res) => {
     }
 
     const Songs = await Song.findAll({
-        attributes: ["id", "userId", "albumId", "title", "description", "createdAt", "updatedAt", "previewImage"],
-        ...pagination
+        pagination
     })
     res.json({ Songs, page, size });
 })
