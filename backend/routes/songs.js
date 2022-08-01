@@ -13,12 +13,13 @@ router.get('/', async (req, res) => {
     let { page, size } = req.query;
     if (page) page = parseInt(page);
     if (size) size = parseInt(size);
+    const totalSongs = await Song.count();
 
     let where = {};
     let pagination = {};
 
-    if (!page) page = 0;
-    if (!size) size = 20;
+    if (!page) page = 1;
+    if (!size) size = totalSongs;
 
     if (page > 10) {
         page = 0;
@@ -27,7 +28,7 @@ router.get('/', async (req, res) => {
     }
 
     if (size > 10) {
-        size = 0;
+        size = totalSongs;
     } else {
         size = size;
     }
