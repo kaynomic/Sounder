@@ -34,9 +34,15 @@ router.get('/', restoreUser, (req, res) => {
 
 // Log in
 router.post('/login', validateLogin, async (req, res, next) => {
+
     const { email, password } = req.body;
 
+    console.log("email: ", email);
+    console.log("password: ", password);
+
     const user = await User.login({ email, password });
+
+    console.log("faffadfafa User:", user);
 
     if (!user) {
         const err = new Error('Login failed');
