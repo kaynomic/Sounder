@@ -40,7 +40,7 @@ const validateSignup = [
 ];
 
 router.post('/signup', validateSignup, async (req, res) => {
-    const { firstName, lastName, email, username, password, previewImage } = req.body;
+    const { firstName, lastName, email, username, password } = req.body;
     const check = await User.findOne({ where: { email } });
 
     if (check) {
@@ -50,11 +50,11 @@ router.post('/signup', validateSignup, async (req, res) => {
         throw err;
     }
 
-    const user = await User.signUp({ firstName, lastName, email, username, password, previewImage });
+    const user = await User.signUp({ firstName, lastName, email, username, password });
 
-    const token = await setTokenCookie(res, user);
+    // const token = await setTokenCookie(res, user);
 
-    return res.json({ ...user.toSafeObject(), token });
+    return res.json({ ...user.toSafeObject() });
 })
 
 module.exports = router;
