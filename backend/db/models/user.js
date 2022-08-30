@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 
     toSafeObject() {
       const { id, firstName, lastName, username, email } = this;
-      return { id, firstName, lastName, email };
+      return { id, firstName, lastName, username, email };
     }
 
     validatePassword(password) {
@@ -113,7 +113,7 @@ module.exports = (sequelize, DataTypes) => {
         attributes: { exclude: ["hashedPassword", "previewImage", "createdAt", "updatedAt"] }
       },
       loginUser: {
-        attributes: { include: ["firstName", "lastName", "email"] }
+        attributes: { include: ["firstName", "lastName", "username", "email"] }
       }
     }
   }

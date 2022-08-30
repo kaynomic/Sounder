@@ -14,7 +14,7 @@ router.get('/', requireAuth, async (req, res, next) => {
         where: {
             id: req.user.id
         },
-        attributes: ["id","firstName", "lastName","email"]
+        attributes: ["id","firstName", "lastName", "username", "email"]
     });
 
     if (me) {

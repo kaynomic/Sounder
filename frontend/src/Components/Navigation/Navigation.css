@@ -1,0 +1,11 @@
+profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    height: 10px;
+    width: 10px;
+}
+
+logo {
+    height: 10px;
+    width: 10px;
+}
