@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from 'react-router-dom';
 import LoginFormPage from "./Components/LoginFormPage";
 import Navigation from "./Components/Navigation";
 import SignupFormPage from "./Components/SignUpForm";
+import HomePage from "./Components/HomePage";
 import * as sessionActions from "./store/session"
 
 function App() {
@@ -15,22 +16,36 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  // const currentUser = useSelector(state => state.session.user);
+
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      { isLoaded && (
-        <Switch>
+      <div class="container">
 
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
+        <div class="header">
+          <Navigation isLoaded={isLoaded} />
+        </div>
+        <div class="content">
+          {isLoaded && (
+            <Switch>
 
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
+              <Route exact path="/">
+                <HomePage />
+              </Route>
 
-        </Switch>
-      )}
+              <Route path="/login">
+                <LoginFormPage />
+              </Route>
+
+              <Route path="/signup">
+                <SignupFormPage />
+              </Route>
+
+            </Switch>
+          )}
+        </div>
+
+      </div>
     </>
   );
 }

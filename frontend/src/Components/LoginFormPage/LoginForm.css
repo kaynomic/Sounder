@@ -43,3 +43,15 @@ form {
     width: 253px;
     margin-top: 5px;
 }
+
+.demo-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF5500;
+    border-radius: 5px;
+    color: white;
+    height: 25px;
+    width: 253px;
+    margin-top: 5px;
+}

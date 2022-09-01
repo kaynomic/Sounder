@@ -1,0 +1,52 @@
+body {
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.first {
+    padding: 5px;
+}
+
+.last {
+    padding: 5px;
+}
+
+.e-mail {
+    padding: 5px;
+    margin-right: 35px;
+}
+
+.e-mail-input {
+    border-radius: 5px;
+}
+
+.user-name {
+    padding: 5px;
+}
+
+.username-input {
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.pass-word {
+    padding: 5px;
+}
+
+.confirm-pw {
+    padding: 5px;
+}
+
+.sign-up-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF5500;
+    border-radius: 5px;
+    color: white;
+    height: 25px;
+    width: 253px;
+    margin-top: 5px;
+}
