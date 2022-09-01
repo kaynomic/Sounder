@@ -1,11 +1,29 @@
-profile-dropdown {
-    display: flex;
-    flex-direction: column;
-    height: 10px;
-    width: 10px;
+body {
+    min-width: 100vw;
 }
 
-logo {
-    height: 10px;
-    width: 10px;
+.nav-container {
+    display: flex;
+    background-color: rgba(32, 32, 32, 0.574);
+}
+
+.log-sign-container {
+    display: flex;
+    justify-content: right;
+    color: black;
+}
+
+i {
+    color: orange;
+}
+
+a {
+    display: flex;
+    height: 40px;
+    width: 200px;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none;
+    color: black;
 }
