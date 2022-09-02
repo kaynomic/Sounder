@@ -1,7 +1,21 @@
 body {
-    width: 100%;
     margin: 0;
     padding: 0;
+}
+
+button {
+    align-items: center;
+}
+
+ul {
+    margin: 0;
+    padding: 5px;
+}
+
+.logged-in-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .nav-container {
@@ -14,6 +28,10 @@ body {
     background-color: #333;
 }
 
+.outer {
+    height: 60px;
+}
+
 .sc-logo {
     height: 30px;
     width: 60px;
@@ -23,5 +41,22 @@ body {
 a {
     padding: 10px;
     text-decoration: none;
+    color: #999;
+}
+
+i {
+    display: flex;
+    justify-content: center;
+    color: #FF5500;
+    font-size: 54px;
+    align-items: center;
+}
+
+.profile-dropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #333;
     color: #999;
 }

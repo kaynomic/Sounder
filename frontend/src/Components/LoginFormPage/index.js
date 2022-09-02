@@ -12,7 +12,7 @@ function LoginFormPage() {
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return (
-    <Redirect to="/" />
+    <Redirect to="/me" />
   );
 
   const handleSubmit = (e) => {
@@ -25,7 +25,21 @@ function LoginFormPage() {
       });
   }
 
+  const demoSubmit = e => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(sessionActions.login({ credential: "demo@user.io", password: "password" }))
+    .catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) setErrors(data.errors);
+    });
+  }
+
   return (
+  <>
+    <div className='log-in-head'>
+      <h2>Welcome Back!</h2>
+    </div>
     <form onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -51,8 +65,9 @@ function LoginFormPage() {
         />
       </label>
       <button type="submit" className='submitButton'>Sign In</button>
-      <button type="submit" className='demo-user'>Demo User</button>
+      <button type="submit" className='demo-user' onClick={demoSubmit}>Demo User</button>
     </form>
+  </>
   );
 }
 

@@ -31,6 +31,11 @@ function SignupFormPage() {
   };
 
   return (
+  <>
+    <div className="create-account-head">
+      <h2>Create an Account</h2>
+    </div>
+
     <form onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, i) => <li key={i}>{error}</li>)}
@@ -93,6 +98,7 @@ function SignupFormPage() {
       </label>
       <button type="submit" className="sign-up-button">Sign Up</button>
     </form>
+  </>
   );
 }
 
