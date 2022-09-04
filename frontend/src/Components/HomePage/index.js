@@ -1,7 +1,7 @@
-// import photo1 from "../../images/waveform.jpg";
+import photo1 from "../../images/centerpiece-for-project.png";
 
-// export default function HomePage() {
-//     return (
-//         <img src={photo1} alt="waveform" className="center-piece"></img>
-//     )
-// }
+export default function HomePage() {
+    return (
+        <img src={photo1} alt="guy listening to music" className="center-piece"></img>
+    )
+}

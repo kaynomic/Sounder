@@ -5,8 +5,9 @@ import LoginFormPage from "./Components/LoginFormPage";
 import Navigation from "./Components/Navigation";
 import SignupFormPage from "./Components/SignUpForm";
 import SongsPage from "./Components/SongsPage";
-// import HomePage from "./Components/HomePage";
+import HomePage from "./Components/HomePage";
 import * as sessionActions from "./store/session"
+import { returnAllSongs } from "./store/songReducer";
 
 function App() {
 
@@ -15,24 +16,25 @@ function App() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(returnAllSongs())
   }, [dispatch]);
 
-  // const currentUser = useSelector(state => state.session.user);
+  const currentUser = useSelector(state => state.session.user);
 
   return (
     <>
-      <div class="container">
+      <div className="container">
 
-        <div class="header">
+        <div className="header">
           <Navigation isLoaded={isLoaded} />
         </div>
-        <div class="content">
+        <div className="content">
           {isLoaded && (
             <Switch>
 
-              {/* <Route exact path="/">
+              <Route exact path="/">
                 <HomePage />
-              </Route> */}
+              </Route>
 
               <Route path="/login">
                 <LoginFormPage />
@@ -49,7 +51,9 @@ function App() {
             </Switch>
           )}
         </div>
-
+        {/* <div className="footer">
+            <div className="player"></div>
+        </div> */}
       </div>
     </>
   );

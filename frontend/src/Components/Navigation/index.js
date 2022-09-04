@@ -20,7 +20,6 @@ function Navigation({ isLoaded }) {
         );
     } else {
         sessionLinks = (
-        <>
             <div className="nav-container">
                 <div>
                     <NavLink exact to="/"><img src={logo} alt="sc-logo" className="sc-logo"></img></NavLink>
@@ -32,7 +31,6 @@ function Navigation({ isLoaded }) {
                     <NavLink to="/signup">Sign Up</NavLink>
                 </div>
             </div>
-        </>
         );
     }
 

@@ -1,0 +1,5 @@
+.song-section {
+    display: grid;
+    grid-template-rows: 33% 33% 33%;
+    grid-template-columns: 33% 33% 33%;
+}

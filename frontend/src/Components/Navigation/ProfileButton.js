@@ -36,7 +36,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <div className="outer">
-        <button onClick={openMenu}>
+        <button className="dropdown-button" onClick={openMenu}>
           <i className="fa-brands fa-soundcloud"></i>
         </button>
         {showMenu && (

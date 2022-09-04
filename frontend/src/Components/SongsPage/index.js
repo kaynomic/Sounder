@@ -1,21 +1,25 @@
-import React from "react"
-import { useSelector } from "react-redux"
-
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { returnAllSongs } from "../../store/songReducer";
 
 export default function SongsPage() {
-    const songs = useSelector(state => state.session.songs);
+    const songs = Object.values(useSelector(state => state.songs));
+    const dispatch = useDispatch();
+
+    console.log(songs);
+
+    useEffect(() => {
+        dispatch(returnAllSongs())
+    }, [dispatch])
 
     return (
         <>
-            <div className="header">
-            </div>
             <div className="song-section">
                 {songs && (songs.map(song => {
                     return (
-                        <div className="song-container">
-                            <div key={song.id}>
-                                {song.title}
-                            </div>
+                        <div className="song-row" key={song.id}>
+                                <p>{song.title}</p>
+                                <p>{song.description}</p>
                         </div>
                     )
                 }))}

@@ -121,16 +121,20 @@ export default function songReducer(state = initialState, action) {
 
     switch (action.type) {
         case CREATE_SONG:
-
             return newState;
         case GET_SONG:
             return newState;
         case ALL_SONGS:
+            action.songs.forEach((song) => {
+                // console.log(song)
+                newState[song.id] = song;
+            })
+            // console.log(newState);
             return newState;
         case EDIT_SONG:
             return newState;
         case DELETE_SONG:
-
+            delete newState[action.id]
             return newState;
         default:
             return newState;
