@@ -4,6 +4,10 @@ const router = express.Router();
 const { requireAuth, restoreUser, setTokenCookie } = require("../utils/auth.js");
 const { Album, User, Song } = require('../db/models');
 
+// import AWS S3 file
+const { singlePublicFileUpload, singleMulterUpload } = require('../awsS3');
+
+
 /* ---------------------- GET ----------------------- */
 
 // Get All Albums
@@ -62,12 +66,21 @@ router.post('/', requireAuth, async (req, res) => {
 })
 
 // Create a Song for an Album based on Album's Id
-router.post('/:albumId/songs', requireAuth, async (req, res) => {
+router.post('/:albumId/songs', singleMulterUpload("previewImage") , requireAuth, async (req, res) => {
     const { user } = req;
     const { albumId } = req.params;
-    const { title, description, url, imageUrl } = req.body;
+    const { title, description, url } = req.body;
+
+    let imageUrl;
+
+    if(req.file){
+        imageUrl = await singlePublicFileUpload(req.file);
+    } else {
+        imageUrl = req.body.image;
+    }
 
     const album = await Album.findByPk(albumId);
+
 
     if (album) {
         if (album.userId === user.id) {

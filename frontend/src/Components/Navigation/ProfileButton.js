@@ -30,7 +30,7 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-    history.push("/");
+    return history.push("/");
   };
 
   return (
@@ -40,7 +40,7 @@ function ProfileButton({ user }) {
           <i className="fa-brands fa-soundcloud"></i>
         </button>
         {showMenu && (
-          <ul className="profile-dropdown">
+          <ul className="profile-dropdown" style={{zIndex: 1000}}>
             <li>{user.username}</li>
             <li>{user.email}</li>
             <li>

@@ -7,7 +7,8 @@ import SignupFormPage from "./Components/SignUpForm";
 import SongsPage from "./Components/SongsPage";
 import HomePage from "./Components/HomePage";
 import * as sessionActions from "./store/session"
-import { returnAllSongs } from "./store/songReducer";
+import { returnAllSongs } from "./store/songs";
+import SongCreateForm from "./Components/SongCreateForm";
 
 function App() {
 
@@ -44,8 +45,13 @@ function App() {
                 <SignupFormPage />
               </Route>
 
-              <Route path="/songs">
+              <Route exact path="/songs">
                 <SongsPage />
+              </Route>
+
+              {/* route to create song */}
+              <Route path="/songs/create">
+                <SongCreateForm/>
               </Route>
 
             </Switch>
