@@ -68,8 +68,12 @@
 
 .add-song-container {
     position: sticky;
-    bottom: 0;
+    bottom: 1.5vh;
     left: 0.1vw;
+}
+
+.song-nav-button {
+    cursor: pointer;
 }
 
 /**************************

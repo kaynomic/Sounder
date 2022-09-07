@@ -18,14 +18,10 @@ const createSong = (song) => {
 export const newSong = (song) => async (dispatch) => {
     const { title, description, url } = song;
 
-    console.log("song", song);
+    // console.log("song", song);
     const res = await csrfFetch("/songs", {
         method: "POST",
-        body: JSON.stringify({
-            title,
-            description,
-            url
-        }),
+        body: JSON.stringify(song),
     })
 
     if (res.ok) {
