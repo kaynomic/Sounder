@@ -114,7 +114,6 @@ router.post("/", requireAuth, async (req, res) => {
     const { user } = req;
     const { title, description, url } = req.body.song;
 
-    console.log("body ", req.body);
     const song = await Song.create({
         userId: user.id,
         title,

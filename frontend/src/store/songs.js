@@ -89,7 +89,6 @@ export const updateSong = (songDetails) => async (dispatch) => {
 
 // DELETE
 const deleteSong = (songId) => {
-    console.log("test5", songId)
     return {
         type: DELETE_SONG,
         songId

@@ -8,7 +8,6 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
-  console.log(user)
 
   const openMenu = () => {
     if (showMenu) return;

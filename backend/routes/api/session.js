@@ -37,8 +37,8 @@ router.post('/login', validateLogin, async (req, res, next) => {
 
     const { email, password } = req.body;
 
-    console.log("email: ", email);
-    console.log("password: ", password);
+    // console.log("email: ", email);
+    // console.log("password: ", password);
 
     const user = await User.login({ email, password });
 
