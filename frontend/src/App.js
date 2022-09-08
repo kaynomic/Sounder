@@ -11,6 +11,7 @@ import { returnAllSongs } from "./store/songs";
 import SongCreateForm from "./Components/SongCreateForm";
 import MediaPlayer from "./Components/SongsPage/MediaPlayer/MediaPlayer";
 import SongsCard from "./Components/SongsPage/SongsCard";
+import SongEditForm from "./Components/SongEditForm";
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
     dispatch(returnAllSongs())
   }, [dispatch]);
 
-  const currentUser = useSelector(state => state.session.user);
+  // const currentUser = useSelector(state => state.session.user);
 
   return (
     <>
@@ -55,6 +56,10 @@ function App() {
 
               <Route exact path="/songs/:songId">
                 <SongsCard />
+              </Route>
+
+              <Route exact path="/songs/:songId/edit">
+                <SongEditForm />
               </Route>
 
             </Switch>

@@ -151,7 +151,7 @@ router.post('/:songId/comments', requireAuth, async (req, res) => {
 /* ---------------------- PUT ----------------------- */
 
 // Edit a Song
-router.put('/:songId', requireAuth, async (req, res) => {
+router.put('/:songId/edit', requireAuth, async (req, res) => {
     const { songId } = req.params;
     const { title, description, url, previewImage } = req.body;
 

@@ -16,7 +16,6 @@ const createSong = (song) => {
 }
 
 export const newSong = (song) => async (dispatch) => {
-    const { title, description, url } = song;
 
     const res = await csrfFetch("/songs", {
         method: "POST",
@@ -73,7 +72,7 @@ const editSong = (song) => {
 }
 
 export const updateSong = (songDetails) => async (dispatch) => {
-    const song = await csrfFetch(`/songs/${songDetails.id}`, {
+    const song = await csrfFetch(`/songs/${songDetails.id}/edit`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -127,6 +126,7 @@ export default function songReducer(state = initialState, action) {
             })
             return newState;
         case EDIT_SONG:
+            newState[action.song.id] = action.song;
             return newState;
         case DELETE_SONG:
             delete newState[action.songId]
