@@ -18,7 +18,6 @@ const createSong = (song) => {
 export const newSong = (song) => async (dispatch) => {
     const { title, description, url } = song;
 
-    // console.log("song", song);
     const res = await csrfFetch("/songs", {
         method: "POST",
         body: JSON.stringify(song),
@@ -30,32 +29,6 @@ export const newSong = (song) => async (dispatch) => {
         return res;
     }
 }
-
-// export const newSong = (song) => async (dispatch) => {
-//     const { title, description, url } = song;
-
-//     const songFormData = new FormData();
-
-//     songFormData.append("title", title);
-//     songFormData.append("description", description);
-//     songFormData.append("url", url);
-//     // songFormData.append("image", previewImage);
-
-
-//     const track = await csrfFetch("/songs", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "multipart/form-data"
-//         },
-//         body: songFormData
-//     })
-
-//     if (track.ok) {
-//         const songData = await track.json();
-//         dispatch(createSong(songData));
-//         return songData;
-//     }
-// }
 
 // GET
 const getSong = (song) => {
@@ -116,6 +89,7 @@ export const updateSong = (songDetails) => async (dispatch) => {
 
 // DELETE
 const deleteSong = (songId) => {
+    console.log("test5", songId)
     return {
         type: DELETE_SONG,
         songId
@@ -133,7 +107,7 @@ export const byeSong = (songId) => async (dispatch) => {
 }
 
 
-
+// export const getSongById = songId => state => Object.values(state.songs.Songs).find(song => song.id === Number(songId));
 
 
 let initialState = {};
@@ -146,6 +120,7 @@ export default function songReducer(state = initialState, action) {
             newState[action.song.id] = action.song;
             return newState;
         case GET_SONG:
+            newState[action.song.id] = action.song;
             return newState;
         case ALL_SONGS:
             action.songs.forEach((song) => {
@@ -155,7 +130,7 @@ export default function songReducer(state = initialState, action) {
         case EDIT_SONG:
             return newState;
         case DELETE_SONG:
-            delete newState[action.id]
+            delete newState[action.songId]
             return newState;
         default:
             return newState;

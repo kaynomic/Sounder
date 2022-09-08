@@ -1,0 +1,10 @@
+.songCard-container {
+    display: flex;
+    flex-direction: row;
+    background-color: lightgray;
+}
+
+.songCard-photo {
+    width: 200px;
+    height: 200px;
+}

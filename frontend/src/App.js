@@ -9,6 +9,8 @@ import HomePage from "./Components/HomePage";
 import * as sessionActions from "./store/session"
 import { returnAllSongs } from "./store/songs";
 import SongCreateForm from "./Components/SongCreateForm";
+import MediaPlayer from "./Components/SongsPage/MediaPlayer/MediaPlayer";
+import SongsCard from "./Components/SongsPage/SongsCard";
 
 function App() {
 
@@ -24,8 +26,6 @@ function App() {
 
   return (
     <>
-      <div className="container">
-
         <div className="header">
           <Navigation isLoaded={isLoaded} />
         </div>
@@ -37,11 +37,11 @@ function App() {
                 <HomePage />
               </Route>
 
-              <Route path="/login">
+              <Route exact path="/login">
                 <LoginFormPage />
               </Route>
 
-              <Route path="/signup">
+              <Route exact path="/signup">
                 <SignupFormPage />
               </Route>
 
@@ -49,18 +49,20 @@ function App() {
                 <SongsPage />
               </Route>
 
-              {/* route to create song */}
-              <Route path="/songs/create">
+              <Route exact path="/songs/create">
                 <SongCreateForm/>
+              </Route>
+
+              <Route exact path="/songs/:songId">
+                <SongsCard />
               </Route>
 
             </Switch>
           )}
         </div>
-        {/* <div className="footer">
-            <div className="player"></div>
-        </div> */}
-      </div>
+        <div className="footer">
+          <MediaPlayer />
+        </div>
     </>
   );
 }

@@ -1,3 +1,8 @@
+.home-pic {
+    max-width: 100%;
+    height: auto;
+}
+
 .center-piece {
-    height: 720px;
+    object-fit: fill;
 }

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Redirect } from "react-router-dom";
 import './SongCreateForm.css';
 import * as songActions from "../../store/songs";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -28,6 +27,7 @@ function SignupFormPage() {
 
   return (
   <>
+    <div className="form-content">
     <div className="create-song-head">
       <h2>Create a Song</h2>
     </div>
@@ -64,17 +64,9 @@ function SignupFormPage() {
           required
         />
       </label>
-      {/* <select className="album-selector" onChange={(e) => setAlbum(e.target.value)}
-          required>
-        Album
-        <option>Dropout Boogie</option>
-        <option></option>
-        <option></option>
-        <option></option>
-        <option></option>
-      </select> */}
       <button type="submit" className="create-button">Finish</button>
     </form>
+    </div>
   </>
   );
 }
