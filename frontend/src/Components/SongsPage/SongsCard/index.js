@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as songActions from "../../../store/songs";
 
 export default function SongsCard() {
 
-    const songs = Object.values(useSelector(state => state.songs));
+    const { songId } = useParams();
+    const song = (useSelector(state => state.songs[`${songId}`]));
     const dispatch = useDispatch();
     const history = useHistory();
-    const { songId } = useParams();
-    console.log(songs[songId]);
+
+
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        if (song) setIsLoaded(true);
+    }, [song])
 
     const handleEdit = (songId) => {
-        if (songId < 13) songId = songId - 1;
+        if (songId <= 12) songId = songId - 1;
         history.push(`/songs/${songId}/edit`);
     }
 
@@ -23,18 +29,18 @@ export default function SongsCard() {
             })
     }
 
-    return (
+    return isLoaded && (
         <>
             <div className="songCard-container">
                 <div className="songCard-photo">
                     <img className="songCard-img" src={"https://i.pinimg.com/originals/66/64/3e/66643e3e7feea9b07d469b229c1b2722.jpg"} alt="default music"></img>
                 </div>
-                            <div className="songCard-title">
-                                <h2>{songs[songId -1].title}</h2>
-                            </div>
-                            <div className="songCard-description">
-                                <p>{songs[songId - 1].description}</p>
-                            </div>
+                    <div className="songCard-title">
+                        <h2>{song.title}</h2>
+                    </div>
+                    <div className="songCard-description">
+                        <p>{song.description}</p>
+                    </div>
                 <button type="submit" className="songCard-edit" onClick={() => handleEdit(songId)}>
                     Edit Song
                 </button>
