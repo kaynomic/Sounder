@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as songActions from "../../../store/songs";
+import songCardPhoto from "../../../images/song-photo-for-songPage.png";
 
 export default function SongsCard() {
 
@@ -33,7 +34,7 @@ export default function SongsCard() {
         <>
             <div className="songCard-container">
                 <div className="songCard-photo">
-                    <img className="songCard-img" src={"https://i.pinimg.com/originals/66/64/3e/66643e3e7feea9b07d469b229c1b2722.jpg"} alt="default music"></img>
+                    <img className="songCard-img" src={songCardPhoto} alt="default music"></img>
                 </div>
                     <div className="songCard-title">
                         <h2>{song.title}</h2>

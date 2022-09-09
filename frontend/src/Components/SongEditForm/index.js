@@ -15,10 +15,10 @@ export default function SongEditForm() {
     const [errors, setErrors] = useState([]);
 
     const handleClick = () => {
-        const song = { title, description, url }
-        return dispatch(songActions.updateSong({ song, id: songId }))
-        .then(async (res) => {
-            if (res.ok) history.push("/songs");
+        const song = { title, description, url, id: songId }
+        return dispatch(songActions.updateSong({ song }))
+        .then(() => {
+            history.push("/songs");
         })
     }
 
