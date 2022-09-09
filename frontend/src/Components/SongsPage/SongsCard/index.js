@@ -24,10 +24,8 @@ export default function SongsCard() {
     }
 
     const handleDelete = (songId) => {
-        return dispatch(songActions.byeSong(songId))
-            .then(() => {
-                history.push("/songs");
-            })
+        dispatch(songActions.byeSong(songId))
+        history.push("/songs");
     }
 
     return isLoaded && (

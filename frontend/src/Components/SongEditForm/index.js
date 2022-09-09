@@ -16,10 +16,8 @@ export default function SongEditForm() {
 
     const handleClick = () => {
         const song = { title, description, url, id: songId }
-        return dispatch(songActions.updateSong({ song }))
-        .then(() => {
-            history.push("/songs");
-        })
+        dispatch(songActions.updateSong(song))
+        history.push("/songs");
     }
 
     return (
@@ -29,7 +27,7 @@ export default function SongEditForm() {
                     <h2>Edit This Song</h2>
                 </div>
 
-                <form onClick={() => handleClick(songId)}>
+                <form>
                     <ul>
                         {errors.map((error, i) => <li key={i}>{error}</li>)}
                     </ul>
@@ -61,7 +59,7 @@ export default function SongEditForm() {
                             required
                         />
                     </label>
-                    <button type="submit" className="submit-edit-button">Finish</button>
+                    <button type="submit" className="submit-edit-button" onClick={() => handleClick(songId)}>Finish</button>
                 </form>
             </div>
         </>
