@@ -40,7 +40,7 @@ function LoginFormPage() {
     <div className='log-in-head'>
       <h2>Welcome Back!</h2>
     </div>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="login-form">
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>

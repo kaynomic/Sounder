@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Route, Switch } from 'react-router-dom';
 import LoginFormPage from "./Components/LoginFormPage";
 import Navigation from "./Components/Navigation";
@@ -12,6 +12,7 @@ import SongCreateForm from "./Components/SongCreateForm";
 import MediaPlayer from "./Components/SongsPage/MediaPlayer/MediaPlayer";
 import SongsCard from "./Components/SongsPage/SongsCard";
 import SongEditForm from "./Components/SongEditForm";
+import PlaylistsPage from "./Components/PlaylistsPage";
 
 function App() {
 
@@ -60,6 +61,10 @@ function App() {
 
               <Route exact path="/songs/:songId/edit">
                 <SongEditForm />
+              </Route>
+
+              <Route exact path="/playlists">
+                <PlaylistsPage />
               </Route>
 
             </Switch>

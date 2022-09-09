@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as songActions from "../../../store/songs";
 import songCardPhoto from "../../../images/song-photo-for-songPage.png";
+import "./SongsCard.css";
 
 export default function SongsCard() {
 

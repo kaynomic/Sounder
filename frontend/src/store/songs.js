@@ -1,4 +1,3 @@
-// import { useSelector } from "react-redux";
 import { csrfFetch } from "./csrf";
 
 const CREATE_SONG = "song/createSong";
@@ -103,6 +102,8 @@ export const byeSong = (songId) => async (dispatch) => {
         dispatch(deleteSong(songId));
     }
 }
+
+// REDUCER
 
 let initialState = {};
 

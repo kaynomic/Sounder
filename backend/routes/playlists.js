@@ -7,6 +7,13 @@ const { Album, User, Song, Playlist, PlaylistSong } = require('../db/models');
 
 /* ---------------------- GET ----------------------- */
 
+// Get All Playlists
+router.get("/", async (req, res) => {
+    const lists = await Playlist.findAll();
+    res.json(lists)
+    console.log("list", lists);
+})
+
 // Get details of a playlist from an id
 router.get('/:playlistId', async (req, res) => {
     const { playlistId } = req.params;
@@ -35,7 +42,7 @@ router.get('/:playlistId', async (req, res) => {
 /* ---------------------- POST ----------------------- */
 
 // Create a playlist
-router.post('/', requireAuth, async (req, res) => {
+router.post('/create', requireAuth, async (req, res) => {
     const { user } = req;
     const { name, userId, previewImage } = req.body;
 
