@@ -16,7 +16,7 @@ export default function SongEditForm() {
 
     const handleClick = () => {
         const song = { title, description, url }
-        return dispatch(songActions.updateSong({ song }))
+        return dispatch(songActions.updateSong({ song, id: songId }))
         .then(async (res) => {
             if (res.ok) history.push("/songs");
         })

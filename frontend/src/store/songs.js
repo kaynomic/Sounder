@@ -104,10 +104,6 @@ export const byeSong = (songId) => async (dispatch) => {
     }
 }
 
-
-// export const getSongById = songId => state => Object.values(state.songs.Songs).find(song => song.id === Number(songId));
-
-
 let initialState = {};
 
 export default function songReducer(state = initialState, action) {
