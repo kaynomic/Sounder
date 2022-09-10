@@ -1,0 +1,6 @@
+.me-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    color: white;
+    text-decoration: none;
+}

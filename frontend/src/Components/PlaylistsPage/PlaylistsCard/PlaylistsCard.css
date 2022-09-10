@@ -1,0 +1,10 @@
+.plCard-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(88, 87, 87);
+    color: white;
+}
+
+.plCard-delete {
+    width: 100px;
+}

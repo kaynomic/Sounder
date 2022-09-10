@@ -12,6 +12,7 @@ function ProfileButton({ user }) {
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
+    history.push("/me");
   };
 
   useEffect(() => {

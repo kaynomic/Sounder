@@ -8,10 +8,10 @@ import "./SongsCard.css";
 export default function SongsCard() {
 
     const { songId } = useParams();
+    const user = useSelector(state => state.session.user);
     const song = (useSelector(state => state.songs[`${songId}`]));
     const dispatch = useDispatch();
     const history = useHistory();
-
 
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -41,12 +41,12 @@ export default function SongsCard() {
                     <div className="songCard-description">
                         <p>{song.description}</p>
                     </div>
-                <button type="submit" className="songCard-edit" onClick={() => handleEdit(songId)}>
+                { song.userId === user.id && <> <button type="submit" className="songCard-edit" onClick={() => handleEdit(songId)}>
                     Edit Song
                 </button>
                 <button type="submit" className="songCard-delete" onClick={() => handleDelete(songId)}>
                     Delete Song
-                </button>
+                </button> </>}
             </div>
         </>
     )

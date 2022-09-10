@@ -1,10 +1,14 @@
 .songCard-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: rgb(88, 87, 87);
+    color: white;
 }
 
-.songCard-photo {
-    width: 200px;
-    height: 200px;
+.songCard-edit {
+    width: 100px;
+}
+
+.songCard-delete {
+    width: 100px;
 }
