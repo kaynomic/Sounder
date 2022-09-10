@@ -15,7 +15,7 @@ const createPL = (playlist) => {
 }
 
 export const newPL = (playlist) => async (dispatch) => {
-    const res = await csrfFetch("/playlists", {
+    const res = await csrfFetch("/playlists/create", {
         method: "POST",
         body: JSON.stringify(playlist),
     })
@@ -59,7 +59,8 @@ export const returnAllPLs = () => async (dispatch) => {
 
     if (playlists.ok) {
         const data = await playlists.json();
-        dispatch(allPL(data.Playlists));
+        // console.log("data", data);
+        dispatch(allPL(data));
     }
 }
 
@@ -98,7 +99,7 @@ export default function playReducer(state = initialState, action) {
             return newState;
         case ALL_PL:
             action.playlists.forEach((playlist) => {
-                newState[playlist.dataValues.id] = playlist;
+                newState[playlist.id] = playlist;
             })
             return newState;
         case DELETE_PL:

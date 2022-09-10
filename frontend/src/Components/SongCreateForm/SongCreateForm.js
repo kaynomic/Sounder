@@ -36,7 +36,7 @@ function SignupFormPage() {
       <ul>
         {errors.map((error, i) => <li key={i}>{error}</li>)}
       </ul>
-      <label className="title">
+      <label className="song-title">
         Title
         <input
           type="text"
@@ -45,7 +45,7 @@ function SignupFormPage() {
           required
         />
       </label>
-      <label className="description">
+      <label className="song-description">
         Description
         <input
           type="text"
@@ -54,7 +54,7 @@ function SignupFormPage() {
           required
         />
       </label>
-      <label className="url">
+      <label className="song-url">
         URL
         <input
           type="text"

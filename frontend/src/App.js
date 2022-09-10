@@ -13,6 +13,10 @@ import MediaPlayer from "./Components/SongsPage/MediaPlayer/MediaPlayer";
 import SongsCard from "./Components/SongsPage/SongsCard";
 import SongEditForm from "./Components/SongEditForm";
 import PlaylistsPage from "./Components/PlaylistsPage";
+import PlaylistsCard from "./Components/PlaylistsPage/PlaylistsCard";
+import ErrorPage from "./Components/ErrorPage";
+import PlaylistCreateForm from "./Components/PlaylistCreateForm";
+import CurrentUserPage from "./Components/CurrentUserPage";
 
 function App() {
 
@@ -47,6 +51,10 @@ function App() {
                 <SignupFormPage />
               </Route>
 
+              <Route exact path="/me">
+                <CurrentUserPage />
+              </Route>
+
               <Route exact path="/songs">
                 <SongsPage />
               </Route>
@@ -65,6 +73,18 @@ function App() {
 
               <Route exact path="/playlists">
                 <PlaylistsPage />
+              </Route>
+
+              <Route exact path="/playlists/create">
+                <PlaylistCreateForm />
+              </Route>
+
+              <Route exact path="/playlists/:playlistId">
+                <PlaylistsCard />
+              </Route>
+
+              <Route>
+                <ErrorPage />
               </Route>
 
             </Switch>

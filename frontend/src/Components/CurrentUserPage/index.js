@@ -1,9 +1,12 @@
 // import ProfileButton from "../Navigation/ProfileButton";
+import React from "react";
+import "./CurrentUserPage.css";
 
-// function CurrentUserPage() {
+export default function CurrentUserPage() {
 
 
-//     return(
 
-//     )
-// }
+    return(
+        <div></div>
+    )
+}
