@@ -15,7 +15,7 @@ const createPL = (playlist) => {
 }
 
 export const newPL = (playlist) => async (dispatch) => {
-    const res = await csrfFetch("/playlists/create", {
+    const res = await csrfFetch("/api/playlists/create", {
         method: "POST",
         body: JSON.stringify(playlist),
     })
@@ -37,7 +37,7 @@ const getPL = (playlist) => {
 }
 
 export const returnPL = (playlistId) => async (dispatch) => {
-    const playlist = await csrfFetch(`/playlists/${playlistId}`);
+    const playlist = await csrfFetch(`/api/playlists/${playlistId}`);
 
     if (playlist.ok) {
         const data = await playlist.json();
@@ -55,7 +55,7 @@ const allPL = (playlists) => {
 }
 
 export const returnAllPLs = () => async (dispatch) => {
-    const playlists = await csrfFetch("/playlists");
+    const playlists = await csrfFetch("/api/playlists");
 
     if (playlists.ok) {
         const data = await playlists.json();
@@ -74,7 +74,7 @@ const deletePL = (playlistId) => {
 }
 
 export const byePL = (playlistId) => async (dispatch) => {
-    const list = await csrfFetch(`/playlists/${playlistId}`, {
+    const list = await csrfFetch(`/api/playlists/${playlistId}`, {
         method: "DELETE"
     })
 

@@ -17,12 +17,12 @@ router.get("/api/csrf/restore", (req, res) => {
 });
 
 router.use('/api', apiRouter);
-router.use('/me', meRouter);
-router.use('/songs', songsRouter);
-router.use('/albums', albumsRouter);
-router.use('/artists', artistsRouter);
-router.use('/comments', commentsRouter);
-router.use('/playlists', playlistsRouter);
+router.use('/api/me', meRouter);
+router.use('/api/songs', songsRouter);
+router.use('/api/albums', albumsRouter);
+router.use('/api/artists', artistsRouter);
+router.use('/api/comments', commentsRouter);
+router.use('/api/playlists', playlistsRouter);
 
 // Serve React build files in production
 if (process.env.NODE_ENV === 'production') {

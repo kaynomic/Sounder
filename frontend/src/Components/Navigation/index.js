@@ -14,8 +14,8 @@ function Navigation({ isLoaded }) {
         sessionLinks = (
             <div className="logged-in-nav">
                 <ProfileButton user={sessionUser} />
-                <NavLink to="/songs">Songs</NavLink>
-                <NavLink to="/playlists">Playlists</NavLink>
+                <NavLink to="/songs">All Songs</NavLink>
+                <NavLink to="/playlists">All Playlists</NavLink>
             </div>
         );
     } else {
