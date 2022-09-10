@@ -19,6 +19,10 @@ export default function PlaylistsCard() {
         if (playlist) setIsLoaded(true);
     }, [playlist])
 
+    useEffect(() => {
+        dispatch(playlistActions.returnAllPLs())
+    }, [dispatch])
+
     const handleDelete = (playlistId) => {
         dispatch(playlistActions.byePL(playlistId));
         history.push("/playlists");
