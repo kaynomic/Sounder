@@ -54,14 +54,15 @@ router.get('/:albumId', async (req, res) => {
 // Create an Album
 router.post('/', requireAuth, async (req, res) => {
     const { user } = req;
-    const { title, description, imageUrl } = req.body;
+    const { title, description } = req.body;
 
     const album = await Album.create({
         userId: user.id,
         title,
         description,
-        previewImage: imageUrl
+        // previewImage: imageUrl
     })
+    res.status(201);
     res.json(album);
 })
 
@@ -105,7 +106,7 @@ router.post('/:albumId/songs', singleMulterUpload("previewImage") , requireAuth,
 /* ---------------------- PUT ----------------------- */
 
 // Edit an album
-router.put('/:albumId', requireAuth, async (req, res) => {
+router.put('/:albumId/edit', requireAuth, async (req, res) => {
     const { user } = req;
     const { albumId } = req.params;
     const { title, description, previewImage } = req.body;

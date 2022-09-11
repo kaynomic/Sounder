@@ -18,12 +18,12 @@ export default function CurrentUserPage() {
         dispatch(playlistActions.returnAllPLs());
     }, [dispatch])
 
-    console.log("playlists", playlists);
+    // console.log("playlists", playlists);
 
     // (user.id === songs.userId) && (user.id === playlists.userId)
 
-    const songFlag = false;
-    const plFlag = false;
+    // const songFlag = false;
+    // const plFlag = false;
 
     // Object.values(songs).some(song => user.id === song.userId ? songFlag = true : songFlag = false);
 

@@ -1,38 +1,40 @@
 import { React, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import * as songActions from "../../store/songs";
-import "./SongEditForm.css";
+import * as albumActions from "../../store/albums";
+import "./AlbumEditForm.css";
 
-export default function SongEditForm() {
+export default function AlbumEditForm() {
 
-    // const songs = useSelector((state) => state.songs);
-    const { songId } = useParams();
+    const { albumId } = useParams();
+    // console.log("albumId", albumId);
     const dispatch = useDispatch();
     const history = useHistory();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [url, setUrl] = useState("");
     const [errors, setErrors] = useState([]);
+    // const [previewImage, setPreviewImage] = useState("");
 
     const handleClick = () => {
-        const song = { title, description, url, id: songId }
-        dispatch(songActions.updateSong(song))
-        history.push("/songs");
+        console.log("albumId", albumId);
+        const album = { title, description, id: albumId }
+        // console.log("albumId", albumId);
+        dispatch(albumActions.albumEdit(album));
+        history.push("/albums");
     }
 
     return (
         <>
             <div className="edit-content">
-                <div className="edit-song-head">
-                    <h2>Edit This Song</h2>
+                <div className="edit-album-head">
+                    <h2>Edit This Album</h2>
                 </div>
 
                 <form>
                     <ul>
                         {errors.map((error, i) => <li key={i}>{error}</li>)}
                     </ul>
-                    <label className="edit-title">
+                    <label className="albumEdit-title">
                         Title
                         <input
                             type="text"
@@ -41,7 +43,7 @@ export default function SongEditForm() {
                             required
                         />
                     </label>
-                    <label className="edit-description">
+                    <label className="albumEdit-description">
                         Description
                         <input
                             type="text"
@@ -50,17 +52,7 @@ export default function SongEditForm() {
                             required
                         />
                     </label>
-                    <label className="edit-url">
-                        URL
-                        <input
-                            type="text"
-                            className='url-input'
-                            value={url}
-                            onChange={(e) => setUrl(e.target.value)}
-                            required
-                        />
-                    </label>
-                    <button type="submit" className="submit-edit-button" onClick={() => handleClick(songId)}>Finish</button>
+                    <button type="submit" className="submit-albumEdit-button" onClick={() => handleClick(albumId)}>Finish</button>
                 </form>
             </div>
         </>

@@ -1,18 +1,18 @@
-.songCard-container {
+.albumCard-container {
     display: flex;
     flex-direction: column;
     background-color: rgb(88, 87, 87);
     color: white;
 }
 
-.songCard-edit {
+.albumCard-edit {
     width: 100px;
     background-color: #FF5500;
     border-radius: 5px;
     color: white;
 }
 
-.songCard-delete {
+.albumCard-delete {
     width: 100px;
     background-color: #FF5500;
     border-radius: 5px;

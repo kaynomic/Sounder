@@ -1,9 +1,9 @@
-.edit-song-head {
+.create-album-head {
     display: flex;
     justify-content: center;
 }
 
-.submit-edit-button {
+.albumCreate-button {
     background-color: #FF5500;
     border-radius: 5px;
     color: white;

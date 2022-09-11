@@ -33,5 +33,11 @@ body * {
 }
 
 .footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     position: sticky;
+    height: 60px;
+    background-color: #333;
+    color: white;
 }

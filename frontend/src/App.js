@@ -17,6 +17,10 @@ import PlaylistsCard from "./Components/PlaylistsPage/PlaylistsCard";
 import ErrorPage from "./Components/ErrorPage";
 import PlaylistCreateForm from "./Components/PlaylistCreateForm";
 import CurrentUserPage from "./Components/CurrentUserPage";
+import AlbumsPage from "./Components/AlbumsPage";
+import AlbumsCard from "./Components/AlbumsPage/AlbumsCard";
+import AlbumEditForm from "./Components/AlbumEditForm";
+import AlbumCreateForm from "./Components/AlbumCreateForm";
 
 function App() {
 
@@ -69,6 +73,22 @@ function App() {
 
               <Route exact path="/songs/:songId/edit">
                 <SongEditForm />
+              </Route>
+
+              <Route exact path="/albums">
+                <AlbumsPage />
+              </Route>
+
+              <Route exact path="/albums/create">
+                <AlbumCreateForm />
+              </Route>
+
+              <Route exact path="/albums/:albumId">
+                <AlbumsCard />
+              </Route>
+
+              <Route exact path="/albums/:albumId/edit">
+                <AlbumEditForm />
               </Route>
 
               <Route exact path="/playlists">

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import * as sessionActions from "../../store/session";
+// import * as sessionActions from "../../store/session";
 import * as playlistActions from "../../store/playlists";
 import plPic from "../../images/playlist-pic.png";
 import "./PlaylistsPage.css";
@@ -9,9 +9,9 @@ import "./PlaylistsPage.css";
 export default function PlaylistsPage() {
 
     const playlists = Object.values(useSelector(state => state.playlists));
-    console.log("playlists", playlists);
+    // console.log("playlists", playlists);
     let { playlistId } = useParams();
-    const user = useSelector(state => state.session.user);
+    // const user = useSelector(state => state.session.user);
 
     // console.log("user", user);
     const dispatch = useDispatch();

@@ -15,7 +15,7 @@ function Navigation({ isLoaded }) {
             <div className="logged-in-nav">
                 <ProfileButton user={sessionUser} />
                 <NavLink to="/songs">All Songs</NavLink>
-                <NavLink to="/playlists">All Playlists</NavLink>
+                <NavLink to="/albums">All Albums</NavLink>
             </div>
         );
     } else {

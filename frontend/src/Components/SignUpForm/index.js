@@ -7,8 +7,8 @@ import * as sessionActions from "../../store/session";
 function SignupFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const [fName, setFirstName] = useState("");
-  const [lName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +21,7 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
+      return dispatch(sessionActions.signup({ firstName, lastName, email, username, password }))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
@@ -44,7 +44,7 @@ function SignupFormPage() {
         First Name
         <input
           type="text"
-          value={fName}
+          value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           required
         />
@@ -53,7 +53,7 @@ function SignupFormPage() {
         Last Name
         <input
           type="text"
-          value={lName}
+          value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           required
         />

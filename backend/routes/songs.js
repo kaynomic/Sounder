@@ -110,6 +110,7 @@ router.get('/:songId/comments', async (req, res) => {
 
 /* ---------------------- POST ----------------------- */
 
+// Create a Song
 router.post("/", requireAuth, async (req, res) => {
     const { user } = req;
     const { title, description, url } = req.body.song;

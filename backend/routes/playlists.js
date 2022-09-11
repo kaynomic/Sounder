@@ -11,7 +11,7 @@ const { Album, User, Song, Playlist, PlaylistSong } = require('../db/models');
 router.get("/", async (req, res) => {
     const lists = await Playlist.findAll();
     res.json(lists)
-    console.log("list", lists);
+    // console.log("list", lists);
 })
 
 // Get details of a playlist from an id
@@ -58,8 +58,10 @@ router.post('/create', requireAuth, async (req, res) => {
 
 // Add song to playlist based on playlist's id
 router.post('/:playlistId', requireAuth, async (req, res) => {
+    console.log("here");
     const { playlistId } = req.params;
     const { songId } = req.body;
+    // console.log("hhtatre", playlistId)
 
     const playlist = await Playlist.findByPk(playlistId);
     const song = await Song.findByPk(songId);

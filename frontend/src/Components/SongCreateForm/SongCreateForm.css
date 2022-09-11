@@ -2,3 +2,9 @@
     display: flex;
     justify-content: center;
 }
+
+.create-button {
+    background-color: #FF5500;
+    border-radius: 5px;
+    color: white;
+}

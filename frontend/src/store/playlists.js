@@ -103,8 +103,9 @@ export default function playReducer(state = initialState, action) {
             })
             return newState;
         case DELETE_PL:
-            delete newState[action.playlistId];
-            return newState;
+            const delState = { ...newState };
+            delete delState[action.playlistId];
+            return delState;
         default:
             return newState;
     }
