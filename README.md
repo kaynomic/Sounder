@@ -31,7 +31,7 @@ Deployed using Heroku: <a href="https://sc-project-aa.herokuapp.com/"> Website <
 ### Backend
 * JavaScript
 * Express.js
-* Sequelize.js
+* Sequelize.js and PostgreSQL
 * CSRF & Bcrypt.js for security and password protection
 
 ### Frontend
