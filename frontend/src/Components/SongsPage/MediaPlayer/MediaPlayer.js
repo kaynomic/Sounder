@@ -9,7 +9,7 @@ export default function MediaPlayer() {
     return (
         <>
             <div className='footer-div'>
-                <a href="https://github.com/kaynomic">My Github Acct</a>
+                <a href="https://github.com/kaynomic/soundcloud">Github Page</a>
                 <a href="https://www.linkedin.com/in/kirlbert-mendez-781954217/">My LinkedIn Acct</a>
             </div>
         </>
