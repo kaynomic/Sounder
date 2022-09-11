@@ -63,7 +63,11 @@ li {
     color: #999;
 }
 
-
+.log-out-button {
+    background-color: #FF5500;
+    /* background-color: #333; */
+    color: white;
+}
 
 /* color: #FF5500; */
 /* background-color: #333; */
