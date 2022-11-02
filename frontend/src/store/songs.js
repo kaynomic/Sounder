@@ -14,12 +14,14 @@ const createSong = (song) => {
     }
 }
 
-export const newSong = (song) => async (dispatch) => {
+export const newSong = (song, albumId) => async (dispatch) => {
 
-    const res = await csrfFetch("/api/songs", {
+    const res = await csrfFetch(`/api/songs`, {
         method: "POST",
         body: JSON.stringify(song),
     })
+
+    console.log("res", res);
 
     if (res.ok) {
         const newTrack = await res.json();

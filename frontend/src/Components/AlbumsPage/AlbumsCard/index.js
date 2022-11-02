@@ -8,16 +8,37 @@ import "./AlbumsCard.css";
 export default function AlbumsCard() {
 
     const { albumId } = useParams();
-    const user = useSelector(state => state.session.user);
-    const album = (useSelector(state => state.albums[`${albumId}`]));
     const dispatch = useDispatch();
     const history = useHistory();
+    const user = useSelector(state => state.session.user);
+    const songs = Object.values(useSelector(state => state.songs));
+    const albums = useSelector(state => state.albums);
+    const album = (useSelector(state => state.albums[`${albumId}`]));
+    // console.log("album", album)
+    // const albumSongs = dispatch(useSelector(state => state.albums[`${albumId}`].then(values => {
+    //     values.Songs.map(song => song.dataValues)
+    // })));
+    const albumSongs = songs.filter(song => {
+        return song.albumId === album.id
+    })
+
+    // console.log("albumSongs", albumSongs);
+
+
 
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         if (album) setIsLoaded(true);
     }, [album])
+
+    useEffect(() => {
+        dispatch(albumActions.returnAlbum(albumId));
+    }, [dispatch, albumId])
+
+    const handleAdd = (albumId) => {
+        history.push(`albums/${albumId}/songs/create/`);
+    }
 
     const handleEdit = (albumId) => {
         // if (songId <= 12) songId = songId - 1;
@@ -31,6 +52,8 @@ export default function AlbumsCard() {
         })
     }
 
+
+
     return isLoaded && (
         <>
             <div className="albumCard-container">
@@ -43,7 +66,26 @@ export default function AlbumsCard() {
                 <div className="albumCard-description">
                     <p>{album.description}</p>
                 </div>
-                {album.userId === user.id && <> <button type="submit" className="albumCard-edit" onClick={() => handleEdit(albumId)}>
+                <div className="album-songs-head">
+                    Album Songs:
+                </div>
+                { albumSongs && albumSongs.map(song => {
+                    return (
+                        <>
+                            <div className="album-songs">
+                                <ol key={song}>
+                                    {song.title}
+                                </ol>
+                            </div>
+                        </>
+                    )
+                })}
+                <div className="albumCard-songs">
+                </div>
+                {album.userId === user.id &&
+                <>
+                <button type="submit" className="albumCard-addSong" onClick={() => handleAdd(albumId)}>Add Song To Album</button>
+                <button type="submit" className="albumCard-edit" onClick={() => handleEdit(albumId)}>
                     Edit Album
                 </button>
                     <button type="submit" className="albumCard-delete" onClick={() => handleDelete(albumId)}>

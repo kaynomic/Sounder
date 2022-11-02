@@ -1,7 +1,8 @@
 import { React, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as songActions from "../../store/songs";
+// import * as albumActions from "../../store/albums";
 import "./SongEditForm.css";
 
 export default function SongEditForm() {
@@ -13,6 +14,7 @@ export default function SongEditForm() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [url, setUrl] = useState("");
+    // const [albumId, setAlbumId] = useState(null);
     const [errors, setErrors] = useState([]);
 
     const handleClick = () => {
@@ -20,6 +22,8 @@ export default function SongEditForm() {
         dispatch(songActions.updateSong(song))
         history.push("/songs");
     }
+
+    // const userAlbums =
 
     return (
         <>

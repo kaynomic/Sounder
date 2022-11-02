@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import './LoginForm.css';
 
-function LoginFormPage() {
+function LoginForm() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const [credential, setCredential] = useState('');
@@ -29,6 +30,9 @@ function LoginFormPage() {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential: "demo@user.io", password: "password" }))
+    .then(() => {
+      history.push("/me");
+    })
     .catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);
@@ -48,6 +52,7 @@ function LoginFormPage() {
         Email
         <input
           type="text"
+          placeholder='Email'
           className='email-input'
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
@@ -58,6 +63,7 @@ function LoginFormPage() {
         Password
         <input
           type="password"
+          placeholder='Password'
           className='pw-input'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -71,4 +77,4 @@ function LoginFormPage() {
   );
 }
 
-export default LoginFormPage;
+export default LoginForm;

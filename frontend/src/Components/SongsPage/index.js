@@ -21,8 +21,8 @@ export default function SongsPage() {
         dispatch(songActions.returnAllSongs());
     }, [dispatch])
 
-    const handleSongCreatePage = () => {
-        history.push("/songs/create");
+    const handleSongCreatePage = (albumId) => {
+        history.push(`albums/${albumId}/songs/create`);
     }
 
     const handleSongCardPage = (songId) => {

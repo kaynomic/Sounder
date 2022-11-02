@@ -74,7 +74,7 @@ router.post('/:albumId/songs', singleMulterUpload("previewImage") , requireAuth,
 
     let imageUrl;
 
-    if(req.file){
+    if (req.file) {
         imageUrl = await singlePublicFileUpload(req.file);
     } else {
         imageUrl = req.body.image;

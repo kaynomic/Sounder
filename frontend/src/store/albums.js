@@ -22,7 +22,7 @@ export const newAlbum = (album) => async (dispatch) => {
 
     if (res.ok) {
         const newNew = await res.json();
-        console.log("newNew", newNew);
+        // console.log("newNew", newNew);
         dispatch(createAlbum(newNew));
         return res;
     }
@@ -42,7 +42,6 @@ export const returnAlbum = (albumId) => async (dispatch) => {
     if (res.ok) {
         const data = res.json();
         dispatch(getAlbum(data));
-        return res;
     }
 }
 
