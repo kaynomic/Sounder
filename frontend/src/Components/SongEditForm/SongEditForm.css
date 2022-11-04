@@ -8,3 +8,8 @@
     border-radius: 5px;
     color: white;
 }
+
+.selAlbum-input:focus {
+    background-color: black;
+    color:black;
+}

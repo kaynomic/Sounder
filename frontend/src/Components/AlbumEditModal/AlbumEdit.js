@@ -1,13 +1,14 @@
 import { React, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as albumActions from "../../store/albums";
 import "./AlbumEditForm.css";
 
-export default function AlbumEditForm() {
+export default function AlbumEdit({setShowModal}) {
 
     const { albumId } = useParams();
-    // console.log("albumId", albumId);
+    console.log("albumId", albumId);
+    const albums = useSelector(state => state.albums);
     const dispatch = useDispatch();
     const history = useHistory();
     const [title, setTitle] = useState("");
@@ -15,13 +16,25 @@ export default function AlbumEditForm() {
     const [errors, setErrors] = useState([]);
     // const [previewImage, setPreviewImage] = useState("");
 
+    // const handleAdd = (albumId) => {
+    //     history.push(`albums/${albumId}/songs/create/`);
+    // }
+
     const handleClick = () => {
         console.log("albumId", albumId);
         const album = { title, description, id: albumId }
         // console.log("albumId", albumId);
-        dispatch(albumActions.albumEdit(album));
-        history.push("/albums");
+        dispatch(albumActions.albumEdit(album))
+        .then(() => {
+            history.push("/albums");
+        })
+        .catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+          });
     }
+
+
 
     return (
         <>
@@ -52,6 +65,7 @@ export default function AlbumEditForm() {
                             required
                         />
                     </label>
+                    {/* <button type="submit" className="albumCard-addSong" onClick={() => handleAdd(albumId)}>Add Song To Album</button> */}
                     <button type="submit" className="submit-albumEdit-button" onClick={() => handleClick(albumId)}>Finish</button>
                 </form>
             </div>

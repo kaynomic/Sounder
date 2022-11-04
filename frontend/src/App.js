@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from 'react-router-dom';
-// import LoginFormModal from "./Components/LoginFormModal";
 import Navigation from "./Components/Navigation";
 import SignupFormPage from "./Components/SignUpForm";
 import SongsPage from "./Components/SongsPage";
@@ -19,7 +18,7 @@ import PlaylistCreateForm from "./Components/PlaylistCreateForm";
 import CurrentUserPage from "./Components/CurrentUserPage";
 import AlbumsPage from "./Components/AlbumsPage";
 import AlbumsCard from "./Components/AlbumsPage/AlbumsCard";
-import AlbumEditForm from "./Components/AlbumEditForm";
+// import AlbumEditForm from "./Components/AlbumEditModal";
 import AlbumCreateForm from "./Components/AlbumCreateForm";
 
 function App() {
@@ -46,10 +45,6 @@ function App() {
               <Route exact path="/">
                 <HomePage />
               </Route>
-
-              {/* <Route exact path="/login">
-                <LoginFormModal />
-              </Route> */}
 
               <Route exact path="/signup">
                 <SignupFormPage />
@@ -87,9 +82,9 @@ function App() {
                 <AlbumsCard />
               </Route>
 
-              <Route exact path="/albums/:albumId/edit">
+              {/* <Route exact path="/albums/:albumId/edit">
                 <AlbumEditForm />
-              </Route>
+              </Route> */}
 
               <Route exact path="/playlists">
                 <PlaylistsPage />

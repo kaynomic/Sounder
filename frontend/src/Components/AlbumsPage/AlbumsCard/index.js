@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import * as albumActions from "../../../store/albums";
 import albumPic from "../../../images/album-pic.png";
 import "./AlbumsCard.css";
+import AlbumEditModal from "../../AlbumEditModal";
 
 export default function AlbumsCard() {
 
@@ -12,19 +13,25 @@ export default function AlbumsCard() {
     const history = useHistory();
     const user = useSelector(state => state.session.user);
     const songs = Object.values(useSelector(state => state.songs));
-    const albums = useSelector(state => state.albums);
+    // const albums = useSelector(state => state.albums);
     const album = (useSelector(state => state.albums[`${albumId}`]));
-    // console.log("album", album)
-    // const albumSongs = dispatch(useSelector(state => state.albums[`${albumId}`].then(values => {
-    //     values.Songs.map(song => song.dataValues)
-    // })));
+
+    const showSongs = [];
+
     const albumSongs = songs.filter(song => {
-        return song.albumId === album.id
+            console.log(song.albumId)
+            console.log("feafe", albumId)
+        if (song.albumId == albumId) {
+            
+            showSongs.push(song)
+        }
+        
+        return showSongs;
     })
 
-    // console.log("albumSongs", albumSongs);
+    console.log("show", showSongs)
 
-
+    console.log("adaf", albumSongs);
 
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -36,14 +43,11 @@ export default function AlbumsCard() {
         dispatch(albumActions.returnAlbum(albumId));
     }, [dispatch, albumId])
 
-    const handleAdd = (albumId) => {
-        history.push(`albums/${albumId}/songs/create/`);
-    }
-
-    const handleEdit = (albumId) => {
-        // if (songId <= 12) songId = songId - 1;
-        history.push(`/albums/${albumId}/edit`);
-    }
+    // const handleEdit = (albumId) => {
+    //     // if (songId <= 12) songId = songId - 1;
+    //     // history.push(`/albums/${albumId}/edit`);
+    //     // <AlbumEditModal />
+    // }
 
     const handleDelete = (albumId) => {
         dispatch(albumActions.byeAlbum(albumId))
@@ -69,11 +73,11 @@ export default function AlbumsCard() {
                 <div className="album-songs-head">
                     Album Songs:
                 </div>
-                { albumSongs && albumSongs.map(song => {
+                { showSongs && showSongs.map(song => {
                     return (
                         <>
                             <div className="album-songs">
-                                <ol key={song}>
+                                <ol key={song.id}>
                                     {song.title}
                                 </ol>
                             </div>
@@ -84,9 +88,8 @@ export default function AlbumsCard() {
                 </div>
                 {album.userId === user.id &&
                 <>
-                <button type="submit" className="albumCard-addSong" onClick={() => handleAdd(albumId)}>Add Song To Album</button>
-                <button type="submit" className="albumCard-edit" onClick={() => handleEdit(albumId)}>
-                    Edit Album
+                <button type="submit" className="albumCard-edit">
+                    <AlbumEditModal />
                 </button>
                     <button type="submit" className="albumCard-delete" onClick={() => handleDelete(albumId)}>
                         Delete Album

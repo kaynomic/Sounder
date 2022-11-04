@@ -7,23 +7,28 @@ import "./SongEditForm.css";
 
 export default function SongEditForm() {
 
+    const user = useSelector(state => state.session.user);
     // const songs = useSelector((state) => state.songs);
+    const myAlbums = [];
+    const albums = Object.values(useSelector(state => state.albums));
+    albums.forEach((album) => {
+        if (album.userId === user.id) myAlbums.push(album)
+    })
+
     const { songId } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [url, setUrl] = useState("");
-    // const [albumId, setAlbumId] = useState(null);
+    const [selAlbumId, setSelAlbumId] = useState(null);
     const [errors, setErrors] = useState([]);
 
     const handleClick = () => {
-        const song = { title, description, url, id: songId }
+        const song = { title, description, url, id: songId, albumId: selAlbumId }
         dispatch(songActions.updateSong(song))
         history.push("/songs");
     }
-
-    // const userAlbums =
 
     return (
         <>
@@ -64,6 +69,21 @@ export default function SongEditForm() {
                             required
                         />
                     </label>
+
+                    {myAlbums.map((album) => (
+                      <label key={album.id}>
+                      Select Album
+                      <input
+                          type="button"
+                          className='selAlbum-input'
+                          value={album.id}
+                          onClick={(e) => setSelAlbumId(e.target.value)}
+                          required
+                      ></input>
+                      {album.title}
+                  </label>  
+                    ))}
+                    
                     <button type="submit" className="submit-edit-button" onClick={() => handleClick(songId)}>Finish</button>
                 </form>
             </div>

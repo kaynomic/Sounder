@@ -26,6 +26,14 @@ function LoginForm() {
       });
   }
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    return dispatch(sessionActions.login({ credential, password }))
+      .then(() => {
+        history.push("/me");
+      })
+  }
+
   const demoSubmit = e => {
     e.preventDefault();
     setErrors([]);
@@ -70,7 +78,7 @@ function LoginForm() {
           required
         />
       </label>
-      <button type="submit" className='submitButton'>Sign In</button>
+      <button type="submit" className='submitButton' onClick={handleLogin}>Sign In</button>
       <button type="submit" className='demo-user' onClick={demoSubmit}>Demo User</button>
     </form>
   </>

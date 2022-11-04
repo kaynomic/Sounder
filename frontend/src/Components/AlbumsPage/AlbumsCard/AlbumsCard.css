@@ -5,6 +5,13 @@
     color: white;
 }
 
+.albumCard-addSong {
+    width: 100px;
+    background-color: #FF5500;
+    border-radius: 5px;
+    color: white;
+}
+
 .albumCard-edit {
     width: 100px;
     background-color: #FF5500;

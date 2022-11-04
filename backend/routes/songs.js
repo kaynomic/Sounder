@@ -154,7 +154,7 @@ router.post('/:songId/comments', requireAuth, async (req, res) => {
 // Edit a Song
 router.put('/:songId/edit', requireAuth, async (req, res) => {
     const { songId } = req.params;
-    const { title, description, url, previewImage } = req.body;
+    const { title, description, url, previewImage, albumId } = req.body;
 
     const song = await Song.findByPk(songId);
 
@@ -163,7 +163,8 @@ router.put('/:songId/edit', requireAuth, async (req, res) => {
             title,
             description,
             url,
-            previewImage
+            previewImage,
+            albumId
         })
     } else {
         const err = new Error("Song not found");
