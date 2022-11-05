@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from "../LoginFormModal";
 import './Navigation.css';
 import logo from '../../images/sc-logo.png';
+import SignUpFormModal from "../SignUpFormModal";
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -30,7 +31,7 @@ function Navigation({ isLoaded }) {
                     <NavLink to="/" className="login-button"><LoginFormModal /></NavLink>
                 </div>
                 <div>
-                    <NavLink to="/signup">Sign Up</NavLink>
+                    <NavLink to="/" className="signup-button"><SignUpFormModal /></NavLink>
                 </div>
             </div>
             </>

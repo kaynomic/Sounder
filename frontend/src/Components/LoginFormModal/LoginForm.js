@@ -72,7 +72,7 @@ function LoginForm() {
         <input
           type="password"
           placeholder='Password'
-          className='pw-input'
+          className='log-pw-input'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

@@ -9,20 +9,22 @@ export default function SongsPage() {
     const songs = Object.values(useSelector(state => state.songs));
     let { songId } = useParams();
     const dispatch = useDispatch();
-    // const [image, setImage] = useState(null);
-
     const history = useHistory();
 
-    if (!songId) {
-        songId = 0;
-    }
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    // useEffect(() => {
+    //     if (songs) setIsLoaded(true);
+    // }, [songs])
+
+    if (!songId) songId = 0;
 
     useEffect(() => {
         dispatch(songActions.returnAllSongs());
     }, [dispatch])
 
-    const handleSongCreatePage = (albumId) => {
-        history.push(`albums/${albumId}/songs/create`);
+    const handleSongCreatePage = () => {
+        history.push("/songs/create");
     }
 
     const handleSongCardPage = (songId) => {

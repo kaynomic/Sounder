@@ -9,6 +9,13 @@
     color: white;
 }
 
+.selAlbum-input {
+    border-radius: 50px;
+    background-color: #999;
+    color: white;
+
+}
+
 .selAlbum-input:focus {
     background-color: black;
     color:black;

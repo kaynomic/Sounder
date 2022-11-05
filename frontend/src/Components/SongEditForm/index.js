@@ -24,10 +24,18 @@ export default function SongEditForm() {
     const [selAlbumId, setSelAlbumId] = useState(null);
     const [errors, setErrors] = useState([]);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        history.push("/songs");
+    }
+
     const handleClick = () => {
         const song = { title, description, url, id: songId, albumId: selAlbumId }
         dispatch(songActions.updateSong(song))
-        history.push("/songs");
+        .catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+          });
     }
 
     return (
@@ -37,7 +45,7 @@ export default function SongEditForm() {
                     <h2>Edit This Song</h2>
                 </div>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <ul>
                         {errors.map((error, i) => <li key={i}>{error}</li>)}
                     </ul>

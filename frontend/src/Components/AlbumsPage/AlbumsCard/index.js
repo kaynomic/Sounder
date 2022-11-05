@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import * as albumActions from "../../../store/albums";
 import albumPic from "../../../images/album-pic.png";
 import "./AlbumsCard.css";
-import AlbumEditModal from "../../AlbumEditModal";
+// import AlbumEditForm from "../../AlbumEditForm";
 
 export default function AlbumsCard() {
 
@@ -18,9 +18,7 @@ export default function AlbumsCard() {
 
     const showSongs = [];
 
-    const albumSongs = songs.filter(song => {
-            console.log(song.albumId)
-            console.log("feafe", albumId)
+    songs.filter(song => {
         if (song.albumId == albumId) {
             
             showSongs.push(song)
@@ -28,10 +26,6 @@ export default function AlbumsCard() {
         
         return showSongs;
     })
-
-    console.log("show", showSongs)
-
-    console.log("adaf", albumSongs);
 
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -43,11 +37,14 @@ export default function AlbumsCard() {
         dispatch(albumActions.returnAlbum(albumId));
     }, [dispatch, albumId])
 
-    // const handleEdit = (albumId) => {
-    //     // if (songId <= 12) songId = songId - 1;
-    //     // history.push(`/albums/${albumId}/edit`);
-    //     // <AlbumEditModal />
-    // }
+    useEffect(() => {
+        dispatch(albumActions.returnAllAlbums());
+    }, [dispatch])
+
+    const handleEdit = (albumId) => {
+        // if (songId <= 12) songId = songId - 1;
+        history.push(`/albums/${albumId}/edit`);
+    }
 
     const handleDelete = (albumId) => {
         dispatch(albumActions.byeAlbum(albumId))
@@ -88,8 +85,8 @@ export default function AlbumsCard() {
                 </div>
                 {album.userId === user.id &&
                 <>
-                <button type="submit" className="albumCard-edit">
-                    <AlbumEditModal />
+                <button type="submit" className="albumCard-edit" onClick={() => handleEdit(albumId)}>
+                    Edit Album
                 </button>
                     <button type="submit" className="albumCard-delete" onClick={() => handleDelete(albumId)}>
                         Delete Album

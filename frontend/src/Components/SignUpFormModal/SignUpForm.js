@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import './SignUpForm.css';
 import * as sessionActions from "../../store/session";
 
-function SignupFormPage() {
+function SignUpForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [firstName, setFirstName] = useState("");
@@ -41,27 +41,29 @@ function SignupFormPage() {
         {errors.map((error, i) => <li key={i}>{error}</li>)}
       </ul>
       <label className="first">
-        First Name
         <input
           type="text"
+          placeholder='First Name'
+          // className='fname-input'
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           required
         />
       </label>
       <label className="last">
-        Last Name
         <input
           type="text"
+          placeholder='Last Name'
+          className='lname-input'
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           required
         />
       </label>
       <label className="e-mail">
-        Email
         <input
           type="text"
+          placeholder='Email'
           className='e-mail-input'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -69,9 +71,9 @@ function SignupFormPage() {
         />
       </label>
       <label className="user-name">
-        Username
         <input
           type="text"
+          placeholder='Username'
           className='username-input'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -79,18 +81,20 @@ function SignupFormPage() {
         />
       </label>
       <label className="pass-word">
-        Password
         <input
           type="password"
+          placeholder='Password'
+          className='sign-pw-input'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
       <label className="confirm-pw">
-        Confirm Password
         <input
           type="password"
+          placeholder='Confirm Password'
+          className='confirm-input'
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
@@ -102,4 +106,4 @@ function SignupFormPage() {
   );
 }
 
-export default SignupFormPage;
+export default SignUpForm;

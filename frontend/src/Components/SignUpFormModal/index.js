@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import AlbumEdit from './AlbumEdit';
-import "./AlbumEditForm.css"
+import SignUpForm from './SignUpForm';
 
-function AlbumEditModal() {
+function SignUpFormModal() {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit Album</button>
+      <button onClick={() => setShowModal(true)} className="signed">Sign Up</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AlbumEdit setShowModal={setShowModal}/>
+          <SignUpForm />
         </Modal>
       )}
     </>
   );
 }
 
-export default AlbumEditModal;
+export default SignUpFormModal;

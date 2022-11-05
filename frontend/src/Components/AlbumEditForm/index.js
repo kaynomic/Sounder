@@ -1,14 +1,14 @@
 import { React, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as albumActions from "../../store/albums";
 import "./AlbumEditForm.css";
 
-export default function AlbumEdit({setShowModal}) {
+export default function AlbumEditForm() {
 
     const { albumId } = useParams();
     console.log("albumId", albumId);
-    const albums = useSelector(state => state.albums);
+    // const albums = useSelector(state => state.albums);
     const dispatch = useDispatch();
     const history = useHistory();
     const [title, setTitle] = useState("");
@@ -16,24 +16,34 @@ export default function AlbumEdit({setShowModal}) {
     const [errors, setErrors] = useState([]);
     // const [previewImage, setPreviewImage] = useState("");
 
-    // const handleAdd = (albumId) => {
-    //     history.push(`albums/${albumId}/songs/create/`);
-    // }
+    // useEffect(() => {
+    //     dispatch(albumActions.returnAllAlbums())
+    // }, [dispatch])
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        history.push(`/albums`);
+    }
 
     const handleClick = () => {
-        console.log("albumId", albumId);
         const album = { title, description, id: albumId }
         // console.log("albumId", albumId);
         dispatch(albumActions.albumEdit(album))
-        .then(() => {
-            history.push("/albums");
-        })
         .catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
-          });
+        });
     }
 
+    // const handleSubmit = (e) => {
+    //     const album = { title, description };
+
+    //     e.preventDefault();
+    //     return dispatch(albumActions.newAlbum(album))
+    //         .then(async (res) => {
+    //             if (res.ok) history.push("/albums");
+    //         })
+    // };
 
 
     return (
@@ -43,7 +53,7 @@ export default function AlbumEdit({setShowModal}) {
                     <h2>Edit This Album</h2>
                 </div>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <ul>
                         {errors.map((error, i) => <li key={i}>{error}</li>)}
                     </ul>
