@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import './SignUpForm.css';
 import * as sessionActions from "../../store/session";
 
 function SignUpForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -30,6 +31,14 @@ function SignUpForm() {
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
+  const handleSignUp = e => {
+    e.preventDefault();
+    return dispatch(sessionActions.signup({ firstName, lastName, email, username, password }))
+    .then(() => {
+      history.push("/me");
+    })
+  }
+
   return (
   <>
     <div className="create-account-head">
@@ -44,7 +53,7 @@ function SignUpForm() {
         <input
           type="text"
           placeholder='First Name'
-          // className='fname-input'
+          className='fname-input'
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           required
@@ -100,7 +109,7 @@ function SignUpForm() {
           required
         />
       </label>
-      <button type="submit" className="sign-up-button">Sign Up</button>
+      <button type="submit" className="sign-up-button" onClick={handleSignUp}>Sign Up</button>
     </form>
   </>
   );
