@@ -22,7 +22,7 @@ export default function AlbumEditForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        history.push(`/albums`);
+        history.push("/albums");
     }
 
     const handleClick = () => {

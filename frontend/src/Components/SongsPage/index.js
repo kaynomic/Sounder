@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import * as songActions from "../../store/songs";
@@ -10,12 +10,6 @@ export default function SongsPage() {
     let { songId } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
-
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    // useEffect(() => {
-    //     if (songs) setIsLoaded(true);
-    // }, [songs])
 
     if (!songId) songId = 0;
 

@@ -8,12 +8,8 @@ import "./AlbumsPage.css";
 
 
 export default function AlbumsPage() {
-
     const albums = Object.values(useSelector(state => state.albums));
-    // console.log("albums", albums);
     let { albumId } = useParams();
-
-    // const songs = Object.values(useSelector(state => state.songs));
     const dispatch = useDispatch();
     const history = useHistory();
 

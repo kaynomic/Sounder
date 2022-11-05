@@ -19,6 +19,14 @@ export default function SongsCard() {
         if (song) setIsLoaded(true);
     }, [song])
 
+    useEffect(() => {
+        dispatch(songActions.returnSong(songId));
+    }, [dispatch, songId])
+
+    useEffect(() => {
+        dispatch(songActions.returnAllSongs());
+    }, [dispatch])
+
     const handleEdit = (songId) => {
         if (songId <= 12) songId = songId - 1;
         history.push(`/songs/${songId}/edit`);
