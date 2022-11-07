@@ -37,6 +37,10 @@ function SignUpForm() {
     .then(() => {
       history.push("/me");
     })
+    .catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) setErrors(data.errors);
+    });
   }
 
   return (
@@ -46,9 +50,6 @@ function SignUpForm() {
     </div>
 
     <form onSubmit={handleSubmit} className="signup-form">
-      <ul>
-        {errors.map((error, i) => <li key={i}>{error}</li>)}
-      </ul>
       <label className="first">
         <input
           type="text"
@@ -110,6 +111,9 @@ function SignUpForm() {
         />
       </label>
       <button type="submit" className="sign-up-button" onClick={handleSignUp}>Sign Up</button>
+        <ul>
+          {errors.map((error, i) => <li key={i}>{error}</li>)}
+        </ul>
     </form>
   </>
   );
